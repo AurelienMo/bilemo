@@ -1,0 +1,3 @@
+api:
+    resource: ../../src/UI/Actions/API/
+    type: annotation

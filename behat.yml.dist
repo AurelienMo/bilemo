@@ -1,0 +1,69 @@
+default:
+    suites:
+        default:
+            contexts:
+                - CustomMinkContext
+                - DoctrineContext:
+                    doctrine: '@doctrine'
+                    kernel: '@kernel'
+                    encoderFactory: '@security.encoder_factory.generic'
+                - CustomRestContext
+                - behatch:context:json
+
+
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~
+        Behatch\Extension: ~
+
+coverage:
+    suites:
+        coverage:
+            contexts:
+                - CoverageContext:
+                - DoctrineContext:
+                    doctrine: '@doctrine'
+                    kernel: '@kernel'
+                    encoderFactory: '@security.encoder_factory.generic'
+                - CustomRestContext
+                - behatch:context:json
+                - CustomMinkContext
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~
+        Behatch\Extension: ~
+
+performance:
+    suites:
+        performance:
+            contexts:
+                - CustomMinkContext
+                - DoctrineContext:
+                    doctrine: '@doctrine'
+                    kernel: '@kernel'
+                    encoderFactory: '@security.encoder_factory.generic'
+                - CustomRestContext
+                - behatch:context:json
+                - BlackfireContext
+        extensions:
+            Behat\Symfony2Extension:
+                kernel:
+                    bootstrap: features/bootstrap/bootstrap.php
+                    class: App\Kernel
+            Behat\MinkExtension:
+                sessions:
+                    default:
+                        symfony2: ~
+            Behatch\Extension: ~
