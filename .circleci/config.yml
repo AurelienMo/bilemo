@@ -1,0 +1,56 @@
+version: 2
+jobs:
+    standard:
+        docker:
+            - image: circleci/php:7.2-fpm
+        steps:
+            - checkout
+            - run: sudo composer self-update
+            - restore_cache:
+                  keys:
+                      - composer-v1-{{ checksum "composer.json" }}
+                      - composer-v1-
+            - run: composer install -n --optimize-autoloader --apcu-autoloader
+            - run: composer dump-autoload --optimize --apcu
+            - save_cache:
+                  key: composer-v1-{{ checksum "composer.json" }}
+                  paths:
+                      - vendor
+            - run: composer require "squizlabs/php_codesniffer=*"
+            - run: vendor/bin/phpcs --standard=PSR1 --ignore=src/Domain/Migrations/*,src/DataFixtures/* src/
+            - run: vendor/bin/phpcs --standard=PSR2 --ignore=src/Domain/Migrations/*,src/DataFixtures/* src/
+
+    test:
+        docker:
+            - image: circleci/php:7.2-fpm
+        steps:
+            - checkout
+            - run: sudo composer self-update
+            - restore_cache:
+                  keys:
+                      - composer-v1-{{ checksum "composer.json" }}
+                      - composer-v1-
+            - run: composer install -n --optimize-autoloader --apcu-autoloader
+            - run: composer dump-autoload --optimize --apcu
+            - save_cache:
+                  key: composer-v1-{{ checksum "composer.json" }}
+                  paths:
+                      - vendor
+            - run: ./bin/console d:d:c --env=test
+            - run: ./bin/console d:s:u --env=test --force
+            - run:
+                  name: Install PHP libzip-dev
+                  command: sudo apt-get install -y libzip-dev
+
+            - run:
+                  name: Install PHP zip
+                  command: sudo docker-php-ext-install zip
+            - run: bin/phpunit --coverage-text -v
+            - run: vendor/bin/behat -v
+
+workflows:
+    version: 2
+    standard_tests:
+        jobs:
+            - standard
+            - test
