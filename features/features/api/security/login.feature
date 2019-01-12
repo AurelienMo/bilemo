@@ -18,5 +18,4 @@ Feature: I need to be able to authenticate to API & obtain token
   Scenario: [Success] Obtain bearer token
     When Send auth request with method "POST" request to "/api/login_check" with username "johndoe" and password "12345678"
     Then the response status code should be 200
-    And the JSON node "code" should be equal to "200"
     And the JSON node "token" should exist
