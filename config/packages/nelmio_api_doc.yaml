@@ -1,0 +1,32 @@
+nelmio_api_doc:
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/api(?!/doc$)
+    documentation:
+        info:
+            title: Bilemo API
+            description: API description for Bilemo App
+            version: 1.0.0
+        securityDefinitions:
+            Bearer:
+                type: apiKey
+                description: 'Value should be : {Bearer TOKEN} obtain by /api/login_check'
+                name: Authorization
+                in: header
+                default: 'Bearer '
+        definitions:
+            CreateClientInput:
+                type: object
+                properties:
+                    username:
+                        type: string
+                        required: true
+                    email:
+                        type: string
+                        required: true
+                    password:
+                        type: string
+                        required: true
+                    role:
+                        type: string
+                        required: false

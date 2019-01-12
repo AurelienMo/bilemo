@@ -84,4 +84,14 @@ class CustomRestContext extends RestContext
         );
         return $requestLogin->getContent();
     }
+
+    /**
+     * Checks, whether the header not exist
+     *
+     * @Then the header :name exist
+     */
+    public function theHeaderExist($name)
+    {
+        return $this->theHeaderShouldExist($name);
+    }
 }

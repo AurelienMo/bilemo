@@ -12,6 +12,7 @@ declare(strict_types=1);
  */
 
 use App\Domain\Model\Client;
+use App\Domain\Model\Collaborator;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -85,6 +86,27 @@ class DoctrineContext implements Context
                 $hash['username'],
                 $this->getEncoder()->encodePassword($hash['password'], ''),
                 $hash['email'],
+                $hash['role']
+            );
+
+            $this->getManager()->persist($client);
+        }
+
+        $this->getManager()->flush();
+    }
+
+    /**
+     * @Given I load following collaborators:
+     *
+     * @throws Exception
+     */
+    public function iLoadFollowingCollaborators(TableNode $table)
+    {
+        foreach ($table->getHash() as $hash) {
+            $client = new Collaborator(
+                $hash['username'],
+                $hash['email'],
+                $this->getEncoder()->encodePassword($hash['password'], ''),
                 $hash['role']
             );
 

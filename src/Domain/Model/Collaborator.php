@@ -16,15 +16,12 @@ namespace App\Domain\Model;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class Client
+ * Class Collaborator
  */
-class Client extends AbstractModel implements UserInterface
+class Collaborator extends AbstractModel implements UserInterface
 {
     /** @var string */
     protected $username;
-
-    /** @var string */
-    protected $password;
 
     /** @var string */
     protected $email;
@@ -32,27 +29,20 @@ class Client extends AbstractModel implements UserInterface
     /** @var array */
     protected $roles;
 
-    /**
-     * Client constructor.
-     *
-     * @param string $username
-     * @param string $password
-     * @param string $email
-     * @param string $role
-     *
-     * @throws \Exception
-     */
+    /** @var string */
+    protected $password;
+
     public function __construct(
         string $username,
-        string $password,
         string $email,
-        ?string $role
+        string $password,
+        string $role = 'ROLE_COLLABORATOR'
     ) {
         parent::__construct();
         $this->username = $username;
-        $this->password = $password;
         $this->email = $email;
-        $this->roles[] = $role ?? 'ROLE_CLIENT';
+        $this->password = $password;
+        $this->roles[] = $role;
     }
 
     /**
@@ -61,14 +51,6 @@ class Client extends AbstractModel implements UserInterface
     public function getUsername(): string
     {
         return $this->username;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
     }
 
     /**
@@ -85,6 +67,14 @@ class Client extends AbstractModel implements UserInterface
     public function getRoles(): array
     {
         return $this->roles;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
     }
 
     public function getSalt()
