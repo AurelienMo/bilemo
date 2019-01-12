@@ -97,8 +97,8 @@ class CreateAccountCommand extends Command
             case 'collaborator':
                 $entity = new Collaborator(
                     $clientInput->getUsername(),
-                    $this->encodePassword($clientInput->getPassword(), Collaborator::class),
                     $clientInput->getEmail(),
+                    $this->encodePassword($clientInput->getPassword(), Collaborator::class),
                     $clientInput->getRole()
                 );
         }
