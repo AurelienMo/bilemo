@@ -11,12 +11,15 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+use App\Domain\Model\Client;
 use Behat\Behat\Context\Context;
+use Behat\Gherkin\Node\TableNode;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
 /**
  * Class DoctrineContext
@@ -68,5 +71,34 @@ class DoctrineContext implements Context
     public function getManager()
     {
         return $this->doctrine->getManager();
+    }
+
+    /**
+     * @Given I load following clients:
+     *
+     * @throws \Exception
+     */
+    public function iLoadFollowingClients(TableNode $table)
+    {
+        foreach ($table->getHash() as $hash) {
+            $client = new Client(
+                $hash['username'],
+                $this->getEncoder()->encodePassword($hash['password'], ''),
+                $hash['email'],
+                $hash['role']
+            );
+
+            $this->getManager()->persist($client);
+        }
+
+        $this->getManager()->flush();
+    }
+
+    /**
+     * @return PasswordEncoderInterface
+     */
+    private function getEncoder()
+    {
+        return $this->encoderFactory->getEncoder(Client::class);
     }
 }

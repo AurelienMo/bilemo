@@ -13,10 +13,12 @@ declare(strict_types=1);
 
 namespace App\Domain\Model;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * Class Client
  */
-class Client extends AbstractModel
+class Client extends AbstractModel implements UserInterface
 {
     /** @var string */
     protected $username;
@@ -83,5 +85,15 @@ class Client extends AbstractModel
     public function getRoles(): array
     {
         return $this->roles;
+    }
+
+    public function getSalt()
+    {
+        return;
+    }
+
+    public function eraseCredentials()
+    {
+        return;
     }
 }
