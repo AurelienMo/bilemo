@@ -17,3 +17,4 @@ behat.yml
 .phpunit
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+run_on_heroku.sh
