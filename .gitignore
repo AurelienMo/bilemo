@@ -20,5 +20,4 @@ behat.yml
 run_on_heroku.sh
 
 ###> lexik/jwt-authentication-bundle ###
-/config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
