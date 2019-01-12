@@ -31,6 +31,11 @@ security:
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
             provider: chain_provider
 
+        public_api:
+            pattern: ^/api/doc
+            stateless: true
+            anonymous: true
+
         api:
             pattern:   ^/api
             stateless: true
@@ -41,4 +46,5 @@ security:
 
     access_control:
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/doc, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
