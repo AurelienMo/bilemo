@@ -15,7 +15,12 @@ Feature: I need to be able to authenticate to API & obtain token
     And the JSON node "code" should be equal to "401"
     And the JSON node "message" should be equal to "Identifiants invalides."
 
-  Scenario: [Success] Obtain bearer token
+  Scenario: [Success] Obtain bearer token with username access
     When Send auth request with method "POST" request to "/api/login_check" with username "johndoe" and password "12345678"
+    Then the response status code should be 200
+    And the JSON node "token" should exist
+
+  Scenario: [Success] Obtain bearer token with email access
+    When Send auth request with method "POST" request to "/api/login_check" with username "johndoe@yopmail.com" and password "12345678"
     Then the response status code should be 200
     And the JSON node "token" should exist
