@@ -45,6 +45,7 @@ class ExceptionSubscriber implements EventSubscriberInterface
         $this->errorResponder = $errorResponder;
         $this->logger = $logger;
     }
+
     /**
      * @return array
      */
@@ -54,6 +55,7 @@ class ExceptionSubscriber implements EventSubscriberInterface
             KernelEvents::EXCEPTION => 'processException',
         ];
     }
+
     /**
      * @param GetResponseForExceptionEvent $event
      */
@@ -70,6 +72,7 @@ class ExceptionSubscriber implements EventSubscriberInterface
                 break;
         }
     }
+
     /**
      * @param GetResponseForExceptionEvent $event
      */
@@ -82,6 +85,7 @@ class ExceptionSubscriber implements EventSubscriberInterface
             )
         );
     }
+
     /**
      * @param GetResponseForExceptionEvent $event
      */
