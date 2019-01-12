@@ -14,17 +14,19 @@ declare(strict_types=1);
 namespace App\Application\Command\CreateClient;
 
 use App\Domain\Model\Client;
+use App\Domain\Model\Collaborator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 /**
- * Class CreateClientCommand
+ * Class CreateAccountCommand
  */
-class CreateClientCommand extends Command
+class CreateAccountCommand extends Command
 {
     const FIELDS_TO_CREATE = [
         'username' => null,
@@ -40,7 +42,7 @@ class CreateClientCommand extends Command
     private $encoderFactory;
 
     /**
-     * CreateClientCommand constructor.
+     * CreateAccountCommand constructor.
      *
      * @param EntityManagerInterface  $entityManager
      * @param EncoderFactoryInterface $encoderFactory
@@ -59,7 +61,8 @@ class CreateClientCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:create-client');
+            ->setName('app:create-account')
+            ->addArgument('type-user', InputArgument::REQUIRED);
     }
 
     /**
@@ -81,25 +84,38 @@ class CreateClientCommand extends Command
         }
 
         $clientInput = (new GenerateClientInput())->unserialize(serialize($results));
-        $client = new Client(
-            $clientInput->getUsername(),
-            $this->encodePassword($clientInput->getPassword()),
-            $clientInput->getEmail(),
-            $clientInput->getRole()
-        );
+        $entity = null;
+        switch ($input->getArgument('type-user')) {
+            case 'client':
+                $entity = new Client(
+                    $clientInput->getUsername(),
+                    $this->encodePassword($clientInput->getPassword(), Client::class),
+                    $clientInput->getEmail(),
+                    $clientInput->getRole()
+                );
+                break;
+            case 'collaborator':
+                $entity = new Collaborator(
+                    $clientInput->getUsername(),
+                    $this->encodePassword($clientInput->getPassword(), Collaborator::class),
+                    $clientInput->getEmail(),
+                    $clientInput->getRole()
+                );
+        }
 
-        $this->entityManager->persist($client);
+        $this->entityManager->persist($entity);
         $this->entityManager->flush();
     }
 
     /**
      * @param string $password
+     * @param string $classEncoder
      *
      * @return string
      */
-    private function encodePassword(string $password)
+    private function encodePassword(string $password, string $classEncoder)
     {
-        $encoder = $this->encoderFactory->getEncoder(Client::class);
+        $encoder = $this->encoderFactory->getEncoder($classEncoder);
 
         return $encoder->encodePassword($password, '');
     }
