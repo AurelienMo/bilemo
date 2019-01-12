@@ -15,3 +15,18 @@ nelmio_api_doc:
                 in: header
                 default: 'Bearer '
         definitions:
+            CreateClientInput:
+                type: object
+                properties:
+                    username:
+                        type: string
+                        required: true
+                    email:
+                        type: string
+                        required: true
+                    password:
+                        type: string
+                        required: true
+                    role:
+                        type: string
+                        required: false

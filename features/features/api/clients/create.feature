@@ -18,8 +18,7 @@ Feature: As an auth user from BilemoCompany, I need to be able to create a clien
     {
     }
     """
-    Then the response status code should be 404
-    And the header "Location" exist
+    Then the response status code should be 401
     And the JSON node "message" should be equal to "Merci de vous authentifier."
 
   Scenario: [Fail] Try to create client with client account
@@ -58,7 +57,7 @@ Feature: As an auth user from BilemoCompany, I need to be able to create a clien
     """
     {
         "username": "johndoe",
-        "email": "johndoe@yopmail.com"
+        "email": "johndoe@yopmail.com",
         "password": "12345678"
     }
     """
@@ -77,9 +76,9 @@ Feature: As an auth user from BilemoCompany, I need to be able to create a clien
     """
     {
         "username": "janedoe",
-        "email": "janedoe@yopmail.com"
+        "email": "janedoe@yopmail.com",
         "password": "12345678"
     }
     """
     Then the response status code should be 201
-    And the header "Location" should not exist
+    And the header "Location" exist

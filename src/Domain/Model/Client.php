@@ -46,13 +46,13 @@ class Client extends AbstractModel implements UserInterface
         string $username,
         string $password,
         string $email,
-        string $role = 'ROLE_CLIENT'
+        ?string $role
     ) {
         parent::__construct();
         $this->username = $username;
         $this->password = $password;
         $this->email = $email;
-        $this->roles[] = $role;
+        $this->roles[] = $role ?? 'ROLE_CLIENT';
     }
 
     /**

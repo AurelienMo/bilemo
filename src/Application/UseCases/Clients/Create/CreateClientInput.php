@@ -29,7 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class CreateClientInput implements InputInterface
 {
     /**
-     * @var string
+     * @var string|null
      *
      * @Assert\NotBlank(
      *     message="Un nom d'utilisateur est requis."
@@ -38,7 +38,7 @@ class CreateClientInput implements InputInterface
     protected $username;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Assert\NotBlank(
      *     message="Une adresse email est requise."
@@ -47,7 +47,7 @@ class CreateClientInput implements InputInterface
     protected $email;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Assert\NotBlank(
      *     message="Vous devez spécifier un mot de passe."
@@ -61,7 +61,7 @@ class CreateClientInput implements InputInterface
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
@@ -69,7 +69,7 @@ class CreateClientInput implements InputInterface
     /**
      * @param string $username
      */
-    public function setUsername(string $username): void
+    public function setUsername(?string $username): void
     {
         $this->username = $username;
     }
@@ -77,7 +77,7 @@ class CreateClientInput implements InputInterface
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -85,7 +85,7 @@ class CreateClientInput implements InputInterface
     /**
      * @param string $email
      */
-    public function setEmail(string $email): void
+    public function setEmail(?string $email): void
     {
         $this->email = $email;
     }
@@ -93,7 +93,7 @@ class CreateClientInput implements InputInterface
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -101,7 +101,7 @@ class CreateClientInput implements InputInterface
     /**
      * @param string $password
      */
-    public function setPassword(string $password): void
+    public function setPassword(?string $password): void
     {
         $this->password = $password;
     }
