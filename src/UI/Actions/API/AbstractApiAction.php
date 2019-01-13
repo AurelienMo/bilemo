@@ -46,7 +46,8 @@ abstract class AbstractApiAction
     public function sendResponse(
         $datas = null,
         int $statusCode = Response::HTTP_OK,
-        array $headers = [], bool $cacheable = false
+        array $headers = [],
+        bool $cacheable = false
     ) {
         return $this->responder->response($datas, $statusCode, $headers, $cacheable);
     }
