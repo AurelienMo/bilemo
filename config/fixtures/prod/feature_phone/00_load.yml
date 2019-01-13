@@ -1,0 +1,19 @@
+App\Domain\Model\FeaturePhone:
+    feature_phone.width:
+        __construct: ["Largeur", "mm"]
+    feature_phone.height:
+        __construct: ["Hauteur", "mm"]
+    feature_phone.depth:
+        __construct: ["Profondeur", "mm"]
+    feature_phone.weight:
+        __construct: ["Poids", "gr"]
+    feature_phone.screen_resolution:
+        __construct: ["Résolution", "px"]
+    feature_phone.screen_size:
+        __construct: ["Taille diagonale", "pouces"]
+    feature_phone.picture_photo:
+        __construct: ["Appareil Photo"]
+    feature_phone.network:
+        __construct: ["Réseaux"]
+    feature_phone.color:
+        __construct: ["Couleur"]

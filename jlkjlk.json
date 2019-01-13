@@ -1,0 +1,38 @@
+{
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/PhoneForListOutput"
+  },
+  "definitions": {
+    "PhoneForListOutput": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": true
+        },
+        "brand": {
+          "$ref": "#/definitions/BrandOutput",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "BrandOutput": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        }
+      }
+    }
+  }
+}

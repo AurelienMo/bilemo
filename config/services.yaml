@@ -1,15 +1,18 @@
 parameters:
     locale: 'en'
+    prodfixtures: '%kernel.project_dir%/config/fixtures/prod/00_load.yml'
 
 services:
 
     _defaults:
         autowire: true
         autoconfigure: true
+        bind:
+            $prodFixtures: '%prodfixtures%'
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Domain/Model,Domain/DoctrineMigrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Domain/Model,Domain/DoctrineMigrations,Tests,Kernel.php,CacheKernel.php}'
 
     App\UI\Actions\:
         resource: '../src/UI/Actions'
