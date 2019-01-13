@@ -39,11 +39,15 @@ abstract class AbstractApiAction
      * @param null  $datas
      * @param int   $statusCode
      * @param array $headers
+     * @param bool  $cacheable
      *
      * @return Response
      */
-    public function sendResponse($datas = null, int $statusCode = Response::HTTP_OK, array $headers = [])
-    {
-        return $this->responder->response($datas, $statusCode, $headers);
+    public function sendResponse(
+        $datas = null,
+        int $statusCode = Response::HTTP_OK,
+        array $headers = [], bool $cacheable = false
+    ) {
+        return $this->responder->response($datas, $statusCode, $headers, $cacheable);
     }
 }

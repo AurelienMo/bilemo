@@ -35,9 +35,13 @@ class JsonResponder
         $this->serializer = $serializer;
     }
 
-    public function response($output = null, int $statusCode = Response::HTTP_OK, array $headers = [])
-    {
-        return new Response(
+    public function response(
+        $output = null,
+        int $statusCode = Response::HTTP_OK,
+        array $headers = [],
+        bool $cacheable = false
+    ) {
+        $response = new Response(
             $output ? $this->serializer->serialize($output, 'json') : null,
             $statusCode,
             array_merge(
@@ -47,5 +51,14 @@ class JsonResponder
                 $headers
             )
         );
+
+        if ($cacheable) {
+            $response
+                ->setPublic()
+                ->setSharedMaxAge(3600)
+                ->setMaxAge(3600);
+        }
+
+        return $response;
     }
 }

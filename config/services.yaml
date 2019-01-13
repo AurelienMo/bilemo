@@ -12,7 +12,7 @@ services:
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Domain/Model,Domain/DoctrineMigrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Domain/Model,Domain/DoctrineMigrations,Tests,Kernel.php,CacheKernel.php}'
 
     App\UI\Actions\:
         resource: '../src/UI/Actions'

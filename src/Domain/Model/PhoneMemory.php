@@ -16,14 +16,14 @@ namespace App\Domain\Model;
 use App\Domain\Model\Traits\NameTrait;
 
 /**
- * Class PhoneMemory
+ * Class PhoneMemoryDefinitionEmbed
  */
 class PhoneMemory extends AbstractModel
 {
     use NameTrait;
 
     /**
-     * PhoneMemory constructor.
+     * PhoneMemoryDefinitionEmbed constructor.
      *
      * @param string $name
      *
