@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\UI\Actions\API;
 
 use App\UI\Responders\JsonResponder;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -50,5 +51,10 @@ abstract class AbstractApiAction
         bool $cacheable = false
     ) {
         return $this->responder->response($datas, $statusCode, $headers, $cacheable);
+    }
+
+    protected function getCache()
+    {
+        return new FilesystemCache();
     }
 }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Application\UseCases;
 
 use App\Application\Helpers\Hateoas\HateoasBuilder;
+use App\Application\UseCases\Phones\ListPhones\Output\ListPhoneOutput;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;

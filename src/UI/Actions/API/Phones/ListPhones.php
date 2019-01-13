@@ -16,12 +16,9 @@ namespace App\UI\Actions\API\Phones;
 use App\Application\UseCases\Phones\ListPhones\Loader;
 use App\UI\Actions\API\AbstractApiAction;
 use App\UI\Responders\JsonResponder;
-use Doctrine\Common\Cache\RedisCache;
-use Psr\Cache\InvalidArgumentException;
-use Symfony\Component\Cache\Adapter\AdapterInterface;
-use Symfony\Component\Cache\Adapter\RedisAdapter;
-use Symfony\Component\Cache\Adapter\TraceableAdapter;
-use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\Security;
+use Psr\Cache\CacheItemPoolInterface;
+use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -33,13 +30,13 @@ class ListPhones extends AbstractApiAction
     /** @var Loader */
     protected $loader;
 
-    /** @var AdapterInterface */
+    /** @var CacheItemPoolInterface */
     protected $cache;
 
     public function __construct(
         JsonResponder $responder,
         Loader $loader,
-        AdapterInterface $cache
+        CacheItemPoolInterface $cache
     ) {
         $this->loader = $loader;
         $this->cache = $cache;
@@ -53,17 +50,28 @@ class ListPhones extends AbstractApiAction
      *
      * @return Response
      *
-     * @throws InvalidArgumentException
+     * @throws \Psr\Cache\InvalidArgumentException
+     *
+     * @SWG\Response(
+     *     response="200",
+     *     description="List BileMo phone.",
+     *     @SWG\Schema(
+     *         ref="#/definitions/ListPhoneOutput"
+     * )
+     * )
+     * @SWG\Response(
+     *     response="401",
+     *     description="Unauthorized, please login.",
+     *     @SWG\Schema(
+     *         ref="#/definitions/JwtErrorOutput"
+     * )
+     * )
+     * @SWG\Tag(name="Phone")
+     * @Security(name="Bearer")
      */
     public function listPhones(): Response
     {
-        $cacheItem = $this->cache->getItem('list_phone');
-        if (!$cacheItem->isHit()) {
-            $cacheItem->set($this->loader->load());
-            $cacheItem->expiresAfter(3600);
-            $this->cache->save($cacheItem);
-        }
-        $output = $cacheItem->get();
+        $output = $this->loader->load();
 
         return $this->sendResponse(
             $output->getItems(),

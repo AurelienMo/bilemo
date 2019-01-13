@@ -29,16 +29,29 @@ use App\Domain\Model\Phone;
  */
 class Loader extends AbstractLoader
 {
+    /**
+     * @param InputInterface|null $input
+     *
+     * @return mixed
+     */
     protected function obtainDatasFromDatabase(?InputInterface $input)
     {
         return $this->getRepository()->listPhones();
     }
 
+    /**
+     * @return string
+     */
     protected function getClassName(): string
     {
         return Phone::class;
     }
 
+    /**
+     * @param $datas
+     *
+     * @return OutputInterface|ListPhoneOutput|null
+     */
     protected function buildOutput($datas): ?OutputInterface
     {
         $output = new ListPhoneOutput();
@@ -59,6 +72,11 @@ class Loader extends AbstractLoader
         return $output;
     }
 
+    /**
+     * @param Brand $brand
+     *
+     * @return array
+     */
     private function buildEmbed(Brand $brand)
     {
         $embeded = [];

@@ -30,3 +30,56 @@ nelmio_api_doc:
                     role:
                         type: string
                         required: false
+            ListPhoneOutput:
+                type: array
+                items:
+                    $ref: "#/definitions/PhoneOutput"
+            PhoneOutput:
+                type: object
+                properties:
+                    id:
+                        type: string
+                        required: true
+                        description: Unique identifier of phone
+                    name:
+                        type: string
+                        required: true
+                        description: Phone's name
+                    os:
+                        type: string
+                        required: true
+                        description: Phone's OS
+                    memory:
+                        type: string
+                        required: true
+                        description: Phone's memory storage
+                    links:
+                        type: array
+                        items:
+                            $ref: "#/definitions/LinkOutput"
+            LinkOutput:
+                type: object
+                properties:
+                    method:
+                        type: string
+                        required: true
+                        description: Verb HTTP to call url related
+                    type:
+                        type: string
+                        required: true
+                        description: Type of link. self, delete, post, list
+                    url:
+                        type: string
+                        required: true
+                        description: Url to access related link
+            JwtErrorOutput:
+                type: object
+                properties:
+                    status:
+                        type: integer
+                        required: true
+                        description: Status code error
+                    message:
+                        type: string
+                        required: true
+                        description: Error message occured
