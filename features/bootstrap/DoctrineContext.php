@@ -17,6 +17,7 @@ use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Tools\SchemaTool;
+use Nelmio\Alice\Loader\NativeLoader;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
@@ -38,6 +39,10 @@ class DoctrineContext implements Context
 
     /** @var EncoderFactoryInterface */
     private $encoderFactory;
+
+    /** @var string */
+    private $prodFixtures;
+
     /**
      * DoctrineContext constructor.
      *
@@ -54,6 +59,7 @@ class DoctrineContext implements Context
         $this->schemaTool = new SchemaTool($this->doctrine->getManager());
         $this->kernel = $kernel;
         $this->encoderFactory = $encoderFactory;
+        $this->prodFixtures = $this->kernel->getContainer()->getParameter('prodfixtures');
     }
     /**
      * @BeforeScenario
@@ -115,6 +121,22 @@ class DoctrineContext implements Context
 
         $this->getManager()->flush();
     }
+
+    /**
+     * @Given I load prod datas
+     */
+    public function iLoadProdDatas()
+    {
+        $loader = new NativeLoader();
+        $objectSet = $loader->loadFile($this->prodFixtures);
+
+        foreach ($objectSet->getObjects() as $object) {
+            $this->getManager()->persist($object);
+        }
+
+        $this->getManager()->flush();
+    }
+
 
     /**
      * @return PasswordEncoderInterface

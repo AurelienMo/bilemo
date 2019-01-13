@@ -8,7 +8,7 @@ Feature: As an auth user from BilemoCompany, I need to be able to create a clien
     Given I load following collaborators:
       | username | email               | password | role              |
       | bilemo   | bilemo@yopmail.com  | 12345678 | ROLE_COLLABORATOR |
-    Given I load following clients:
+    And I load following clients:
       | username | email               | password | role        |
       | johndoe  | johndoe@yopmail.com | 12345678 | ROLE_CLIENT |
 

@@ -24,16 +24,19 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class LoadProdFixturesCommand extends Command
 {
-    const ENTRY_POINT_LOAD_FIXTURE_FILE = __DIR__.'/../../../config/fixtures/prod/00_load.yml';
-
     /** @var EntityManagerInterface */
     protected $entityManager;
 
+    /** @var string */
+    protected $prodFixtures;
+
     public function __construct(
         EntityManagerInterface $entityManager,
+        string $prodFixtures,
         ?string $name = null
     ) {
         $this->entityManager = $entityManager;
+        $this->prodFixtures = $prodFixtures;
         parent::__construct($name);
     }
 
@@ -53,7 +56,7 @@ class LoadProdFixturesCommand extends Command
         InputInterface $input,
         OutputInterface $output
     ) {
-        $objectSet = $this->getLoader()->loadFile(self::ENTRY_POINT_LOAD_FIXTURE_FILE);
+        $objectSet = $this->getLoader()->loadFile($this->prodFixtures);
         foreach ($objectSet->getObjects() as $object) {
             $this->entityManager->persist($object);
         }
