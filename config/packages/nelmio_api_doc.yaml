@@ -79,6 +79,10 @@ nelmio_api_doc:
                         type: array
                         items:
                             $ref: "#/definitions/LinkOutput"
+                    embed:
+                        type: array
+                        items:
+                            $ref: "#/definitions/EmbedOutput"
             LinkOutput:
                 type: object
                 properties:
@@ -105,3 +109,51 @@ nelmio_api_doc:
                         type: string
                         required: true
                         description: Error message occured
+            HTTPErrorOutput:
+                type: object
+                properties:
+                    status:
+                        type: integer
+                        required: true
+                        description: Status code error
+                    message:
+                        type: string
+                        required: true
+                        description: Error http message occured
+            PhoneDetailOutput:
+                type: object
+                properties:
+                    id:
+                        type: integer
+                        required: true
+                        description: Unique identifier of phone
+                    name:
+                        type: string
+                        required: true
+                        description: Phone's name
+                    options:
+                        type: array
+                        items:
+                            $ref: "#/definitions/OptionPhoneOutput"
+                    links:
+                        type: array
+                        items:
+                            $ref: "#/definitions/LinkOutput"
+                    embed:
+                        type: array
+                        items:
+                            $ref: "#/definitions/EmbedOutput"
+            EmbedOutput:
+                type: object
+            OptionPhoneOutput:
+                type: object
+                properties:
+                    name:
+                        type: string
+                        required: true
+                        description: Option's name
+                    value:
+                        type: string
+                        required: true
+                        description: Option's value
+
