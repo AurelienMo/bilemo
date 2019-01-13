@@ -1,0 +1,190 @@
+App\Domain\Model\Phone:
+    iphone_x_64:
+        __construct: ["Iphone X", "Nous avons toujours rêvé de créer un iPhone qui ne soit qu’écran. Un iPhone si immersif qu’il s’efface au profit de la seule expérience. Un iPhone si intelligent qu’il réponde à un geste, à la voix… et même à un regard. C’est chose faite aujourd’hui. Dites bonjour au futur.", '@brand.apple', '@phone_memory.64', '@phone_os.ios', '@type_connector.lightning']
+    iphone_x_256:
+        __construct: ["Iphone X", "Nous avons toujours rêvé de créer un iPhone qui ne soit qu’écran. Un iPhone si immersif qu’il s’efface au profit de la seule expérience. Un iPhone si intelligent qu’il réponde à un geste, à la voix… et même à un regard. C’est chose faite aujourd’hui. Dites bonjour au futur.", '@brand.apple', '@phone_memory.256', '@phone_os.ios', '@type_connector.lightning']
+    iphone_6S_plus_32:
+        __construct: ["Iphone 6S Plus", "Il est fondamentalement différent. D’une part, l’iPhone et iOS 9 fonctionnent en parfaite synergie. Ils se complètent pour vous offrir une performance optimale. D’autre part, l’appareil photo de l’iPhone capture des photos et des vidéos d’une exceptionnelle qualité. Il n’est donc pas surprenant qu’il soit devenu l’appareil photo le plus populaire au monde. L’iPhone intègre également l’App Store, iCloud, FaceTime, Messages et Touch ID. Des fonctionnalités tellement pratiques qu’elles sont devenues indispensables. Enfin, l’iPhone est sécurisé. Et veille sur votre vie privée et votre santé. Le succès de l’iPhone tient à de nombreuses raisons, mais il relève d’un précepte unique, selon lequel un téléphone doit être simple et élégant. Et aussi un peu magique à utiliser.", '@brand.apple', '@phone_memory.32', '@phone_os.ios', '@type_connector.lightning']
+    iphone_6S_plus_128:
+        __construct: ["Iphone 6S Plus", "Il est fondamentalement différent. D’une part, l’iPhone et iOS 9 fonctionnent en parfaite synergie. Ils se complètent pour vous offrir une performance optimale. D’autre part, l’appareil photo de l’iPhone capture des photos et des vidéos d’une exceptionnelle qualité. Il n’est donc pas surprenant qu’il soit devenu l’appareil photo le plus populaire au monde. L’iPhone intègre également l’App Store, iCloud, FaceTime, Messages et Touch ID. Des fonctionnalités tellement pratiques qu’elles sont devenues indispensables. Enfin, l’iPhone est sécurisé. Et veille sur votre vie privée et votre santé. Le succès de l’iPhone tient à de nombreuses raisons, mais il relève d’un précepte unique, selon lequel un téléphone doit être simple et élégant. Et aussi un peu magique à utiliser.", '@brand.apple', '@phone_memory.128', '@phone_os.ios', '@type_connector.lightning']
+    samsung_S8_64:
+        __construct: ["Samsung Galaxy S8", "Samsung révèle une nouvelle technologie pour équiper le Galaxy S8 : l'écran Infinity. De type super AMOLED aux bordures incurvées avant et arrière permettant une prise en main au confort inédit et au raffinement visuel le distinguant de la concurrence. Révolution chez Samsung, l'écran tactile couvre quasiment l'intégralité de la dalle.", '@brand.samsung', '@phone_memory.64', '@phone_os.android', '@type_connector.micro_usb']
+    samsung_S9_64:
+        __construct: ["Samsung Galaxy S9", "Profitez du nouveau Samsung Galaxy S9 et de ses capacités photographiques inégalées. Avec son nouvel appareil photo à grande ouverture f/1,5, l'objectif du Galaxy S9 capte le moindre rayon de lumière, même dans le noir. Captez de meilleures photos, même dans la pénombre. Le Super ralenti vidéo permet d’enregistrer des vidéos à 960 images par seconde, pour des vidéos ralenties incroyables.", '@brand.samsung', '@phone_memory.64', '@phone_os.android', '@type_connector.micro_usb']
+    huawei_P20_pro_128:
+        __construct: ["P20 Pro", "La marque Huawei lance son nouveau smartphone P20 Pro, avec un design en verre au style épuré, aussi agréable au regard qu'au toucher. Avec le Huawei P20 Pro, version évoluée du tout dernier P20, la renaissance de la photographie se met en marche ! Son triple capteur photo conçu avec Leica de 40MP + 20MP + 8MP, vous promet des photos parfaites, même en basse lumière et son zoom hybride x5 vous permet de capter le moindre détail, même à distance. Son écran FullViewFHD+ de 6,1 pouces au format 19:9 vous permet de bénéficier de couleurs vives et de contrastes élevés.", '@brand.huawei', '@phone_memory.128', '@phone_os.android', '@type_connector.usb_c']
+    huawei_mate_20_128:
+        __construct: ["MATE 20", "Avec le HUAWEI Mate20, entrez dans un nouveau monde d’intelligence. Son processeur Kirin 980, doté d’Intelligence Artificielle, améliore drastiquement les performances et la rapidité d’exécution des tâches demandées. Pour une expérience mobile toujours plus fluide. Sa triple caméra conçue avec Leica de 12MP + 16MP + 8MP vous fera entrevoir de nouveaux horizons. Son téléobjectif de 8MP permettra un zoom hybride x5, alors que la nouvelle lentille ultra grand angle de 16MP capturera des images macro ou grand angle. Il embarque une batterie de 4000mAh, dotée de charge rapide permettant de charger la batterie à hauteur de 58% en seulement 30 minutes. Il dispose également d’un écran HUAWEI FullView de 6.53 pouces au format 18.7:9 . pour une immersion totale dans vos jeux et films.", '@brand.huawei', '@phone_memory.128', '@phone_os.android', '@type_connector.usb_c']
+
+App\Domain\Model\PhoneHasFeature:
+    iphone_x_64.width:
+        __construct: ["@iphone_x_64", "@feature_phone.width", "70,9"]
+    iphone_x_64.height:
+        __construct: ["@iphone_x_64", "@feature_phone.height", "143,6"]
+    iphone_x_64.depth:
+        __construct: ["@iphone_x_64", "@feature_phone.depth", "7,7"]
+    iphone_x_64.weight:
+        __construct: ["@iphone_x_64", "@feature_phone.weight", "174"]
+    iphone_x_64.screen_resolution:
+        __construct: ["@iphone_x_64", "@feature_phone.screen_resolution", "1125x2436"]
+    iphone_x_64.screen_size:
+        __construct: ["@iphone_x_64", "@feature_phone.screen_size", "5.8"]
+    iphone_x_64.picture_photo:
+        __construct: ["@iphone_x_64", "@feature_phone.picture_photo", "1"]
+    iphone_x_64.network:
+        __construct: ["@iphone_x_64", "@feature_phone.network", "4G+"]
+    iphone_x_64.color_gris_sideral:
+        __construct: ["@iphone_x_64", "@feature_phone.color", "Gris sidéral"]
+    iphone_x_64.color_black:
+        __construct: ["@iphone_x_64", "@feature_phone.color", "Black"]
+    iphone_x_256.width:
+        __construct: ["@iphone_x_256", "@feature_phone.width", "70,9"]
+    iphone_x_256.height:
+        __construct: ["@iphone_x_256", "@feature_phone.height", "143,6"]
+    iphone_x_256.depth:
+        __construct: ["@iphone_x_256", "@feature_phone.depth", "7,7"]
+    iphone_x_256.weight:
+        __construct: ["@iphone_x_256", "@feature_phone.weight", "174"]
+    iphone_x_256.screen_resolution:
+        __construct: ["@iphone_x_256", "@feature_phone.screen_resolution", "1125x2436"]
+    iphone_x_256.screen_size:
+        __construct: ["@iphone_x_256", "@feature_phone.screen_size", "5.8"]
+    iphone_x_256.picture_photo:
+        __construct: ["@iphone_x_256", "@feature_phone.picture_photo", "1"]
+    iphone_x_256.network:
+        __construct: ["@iphone_x_256", "@feature_phone.network", "4G+"]
+    iphone_x_256.color_gris_sideral:
+        __construct: ["@iphone_x_256", "@feature_phone.color", "Gris sidéral"]
+    iphone_x_256.color_black:
+        __construct: ["@iphone_x_256", "@feature_phone.color", "Black"]
+    iphone_6S_plus_32.width:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.width", "77,9"]
+    iphone_6S_plus_32.height:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.height", "158,2"]
+    iphone_6S_plus_32.depth:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.depth", "7,3"]
+    iphone_6S_plus_32.weight:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.weight", "192"]
+    iphone_6S_plus_32.screen_resolution:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.screen_resolution", "1920x1080"]
+    iphone_6S_plus_32.screen_size:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.screen_size", "5.5"]
+    iphone_6S_plus_32.picture_photo:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.picture_photo", "1"]
+    iphone_6S_plus_32.network:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.network", "4G+"]
+    iphone_6S_plus_32.color_gris_sideral:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.color", "Gris sidéral"]
+    iphone_6S_plus_32.color_argent:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.color", "Argent"]
+    iphone_6S_plus_32.color_pink:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.color", "Pink"]
+    iphone_6S_plus_32.color_gold:
+        __construct: ["@iphone_6S_plus_32", "@feature_phone.color", "Or"]
+    iphone_6S_plus_128.width:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.width", "77,9"]
+    iphone_6S_plus_128.height:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.height", "158,2"]
+    iphone_6S_plus_128.depth:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.depth", "7,3"]
+    iphone_6S_plus_128.weight:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.weight", "192"]
+    iphone_6S_plus_128.screen_resolution:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.screen_resolution", "1920x1080"]
+    iphone_6S_plus_128.screen_size:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.screen_size", "5.5"]
+    iphone_6S_plus_128.picture_photo:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.picture_photo", "1"]
+    iphone_6S_plus_128.network:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.network", "4G+"]
+    iphone_6S_plus_128.color_gris_sideral:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.color", "Gris sidéral"]
+    iphone_6S_plus_128.color_argent:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.color", "Argent"]
+    iphone_6S_plus_128.color_pink:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.color", "Pink"]
+    iphone_6S_plus_128.color_gold:
+        __construct: ["@iphone_6S_plus_128", "@feature_phone.color", "Or"]
+    samsung_S8_64.width:
+        __construct: ["@samsung_S8_64", "@feature_phone.width", "68,1"]
+    samsung_S8_64.height:
+        __construct: ["@samsung_S8_64", "@feature_phone.height", "148,9"]
+    samsung_S8_64.depth:
+        __construct: ["@samsung_S8_64", "@feature_phone.depth", "8,0"]
+    samsung_S8_64.weight:
+        __construct: ["@samsung_S8_64", "@feature_phone.weight", "155"]
+    samsung_S8_64.screen_resolution:
+        __construct: ["@samsung_S8_64", "@feature_phone.screen_resolution", "1440x2960"]
+    samsung_S8_64.screen_size:
+        __construct: ["@samsung_S8_64", "@feature_phone.screen_size", "5.8"]
+    samsung_S8_64.picture_photo:
+        __construct: ["@samsung_S8_64", "@feature_phone.picture_photo", "1"]
+    samsung_S8_64.network:
+        __construct: ["@samsung_S8_64", "@feature_phone.network", "4G+"]
+    samsung_S8_64.color_gris_sideral:
+        __construct: ["@samsung_S8_64", "@feature_phone.color", "Noir"]
+    samsung_S8_64.color_argent:
+        __construct: ["@samsung_S8_64", "@feature_phone.color", "Violet"]
+    samsung_S9_64.width:
+        __construct: ["@samsung_S9_64", "@feature_phone.width", "68,7"]
+    samsung_S9_64.height:
+        __construct: ["@samsung_S9_64", "@feature_phone.height", "147,7"]
+    samsung_S9_64.depth:
+        __construct: ["@samsung_S9_64", "@feature_phone.depth", "8,5"]
+    samsung_S9_64.weight:
+        __construct: ["@samsung_S9_64", "@feature_phone.weight", "163"]
+    samsung_S9_64.screen_resolution:
+        __construct: ["@samsung_S9_64", "@feature_phone.screen_resolution", "1440x2960"]
+    samsung_S9_64.screen_size:
+        __construct: ["@samsung_S9_64", "@feature_phone.screen_size", "5.8"]
+    samsung_S9_64.picture_photo:
+        __construct: ["@samsung_S9_64", "@feature_phone.picture_photo", "1"]
+    samsung_S9_64.network:
+        __construct: ["@samsung_S9_64", "@feature_phone.network", "4G+"]
+    samsung_S9_64.color_gris_sideral:
+        __construct: ["@samsung_S9_64", "@feature_phone.color", "Noir"]
+    samsung_S9_64.color_argent:
+        __construct: ["@samsung_S9_64", "@feature_phone.color", "Violet"]
+    samsung_S9_64.color_bleu:
+        __construct: ["@samsung_S9_64", "@feature_phone.color", "Bleu"]
+    huawei_P20_pro_128.width:
+        __construct: ["@huawei_P20_pro_128", "@feature_phone.width", "73,9"]
+    huawei_P20_pro_128.height:
+        __construct: ["@huawei_P20_pro_128", "@feature_phone.height", "155"]
+    huawei_P20_pro_128.depth:
+        __construct: ["@huawei_P20_pro_128", "@feature_phone.depth", "7,8"]
+    huawei_P20_pro_128.weight:
+        __construct: ["@huawei_P20_pro_128", "@feature_phone.weight", "180"]
+    huawei_P20_pro_128.screen_resolution:
+        __construct: ["@huawei_P20_pro_128", "@feature_phone.screen_resolution", "2240x1080"]
+    huawei_P20_pro_128.screen_size:
+        __construct: ["@huawei_P20_pro_128", "@feature_phone.screen_size", "6.1"]
+    huawei_P20_pro_128.picture_photo:
+        __construct: ["@huawei_P20_pro_128", "@feature_phone.picture_photo", "1"]
+    huawei_P20_pro_128.network:
+        __construct: ["@huawei_P20_pro_128", "@feature_phone.network", "4G+"]
+    huawei_P20_pro_128.color_gris_sideral:
+        __construct: ["@huawei_P20_pro_128", "@feature_phone.color", "Noir"]
+    huawei_P20_pro_128.color_argent:
+        __construct: ["@huawei_P20_pro_128", "@feature_phone.color", "Violet"]
+    huawei_P20_pro_128.color_bleu:
+        __construct: ["@huawei_P20_pro_128", "@feature_phone.color", "Bleu"]
+    huawei_mate_20_128.width:
+        __construct: ["@huawei_mate_20_128", "@feature_phone.width", "77,2"]
+    huawei_mate_20_128.height:
+        __construct: ["@huawei_mate_20_128", "@feature_phone.height", "158,2"]
+    huawei_mate_20_128.depth:
+        __construct: ["@huawei_mate_20_128", "@feature_phone.depth", "8,3"]
+    huawei_mate_20_128.screen_resolution:
+        __construct: ["@huawei_mate_20_128", "@feature_phone.screen_resolution", "1080x2340"]
+    huawei_mate_20_128.screen_size:
+        __construct: ["@huawei_mate_20_128", "@feature_phone.screen_size", "6.53"]
+    huawei_mate_20_128.picture_photo:
+        __construct: ["@huawei_mate_20_128", "@feature_phone.picture_photo", "1"]
+    huawei_mate_20_128.network:
+        __construct: ["@huawei_mate_20_128", "@feature_phone.network", "4G+"]
+    huawei_mate_20_128.color_gris_sideral:
+        __construct: ["@huawei_mate_20_128", "@feature_phone.color", "Noir"]
+    huawei_mate_20_128.color_argent:
+        __construct: ["@huawei_mate_20_128", "@feature_phone.color", "Violet"]
+

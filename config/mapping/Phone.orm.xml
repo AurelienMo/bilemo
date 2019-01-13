@@ -7,7 +7,7 @@
     <entity name="App\Domain\Model\Phone" table="amo_phone">
         <id name="id" type="uuid" column="id"/>
         <field name="name" type="string" nullable="false" />
-        <field name="description" type="string" nullable="false" />
+        <field name="description" type="text" nullable="false" />
         <field name="createdAt" type="datetime" nullable="false" />
         <field name="updatedAt" type="datetime" nullable="true" />
         <many-to-one field="brand" target-entity="App\Domain\Model\Brand">

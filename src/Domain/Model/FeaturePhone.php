@@ -27,7 +27,7 @@ class FeaturePhone extends AbstractModel
 
     public function __construct(
         string $name,
-        ?string $typeValue
+        ?string $typeValue = null
     ) {
         $this->name = $name;
         $this->typeValue = $typeValue;

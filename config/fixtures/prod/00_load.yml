@@ -1,0 +1,7 @@
+include:
+    - brand/00_load.yml
+    - phone_memory/00_load.yml
+    - phone_os/00_load.yml
+    - type_connector/00_load.yml
+    - feature_phone/00_load.yml
+    - phone/00_load.yml

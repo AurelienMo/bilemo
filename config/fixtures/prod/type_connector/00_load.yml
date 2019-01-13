@@ -1,0 +1,7 @@
+App\Domain\Model\TypeConnector:
+    type_connector.micro_usb:
+        __construct: ["Micro USB"]
+    type_connector.usb_c:
+        __construct: ["USB-C"]
+    type_connector.lightning:
+        __construct: ["Lightning"]

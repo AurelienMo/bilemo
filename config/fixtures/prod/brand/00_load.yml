@@ -1,0 +1,23 @@
+App\Domain\Model\Brand:
+    brand.apple:
+        __construct: ["Apple"]
+    brand.samsung:
+        __construct: ["Samsung"]
+    brand.huawei:
+        __construct: ["Huawei"]
+    brand.sony:
+        __construct: ["Sony"]
+    brand.honor:
+        __construct: ["Honor"]
+    brand.google:
+        __construct: ["Google"]
+    brand.blackberry:
+        __construct: ["BlackBerry"]
+    brand.nokia:
+        __construct: ["Nokia"]
+    brand.wiko:
+        __construct: ["Wiko"]
+    brand.motorola:
+        __construct: ["Motorola"]
+    brand.htc:
+        __construct: ["HTC"]

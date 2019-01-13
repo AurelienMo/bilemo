@@ -1,0 +1,15 @@
+App\Domain\Model\PhoneMemory:
+    phone_memory.8:
+        __construct: ["8"]
+    phone_memory.16:
+        __construct: ["16"]
+    phone_memory.24:
+        __construct: ["24"]
+    phone_memory.32:
+        __construct: ["32"]
+    phone_memory.64:
+        __construct: ["64"]
+    phone_memory.128:
+        __construct: ["128"]
+    phone_memory.256:
+        __construct: ["256"]

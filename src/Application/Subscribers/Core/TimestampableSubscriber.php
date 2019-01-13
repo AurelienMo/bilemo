@@ -33,6 +33,7 @@ class TimestampableSubscriber implements EventSubscriber
     public function prePersist(LifecycleEventArgs $args)
     {
         $args->getObject()->onPersist();
+        $args->getObject()->onUpdate();
     }
 
     public function preUpdate(LifecycleEventArgs $args)

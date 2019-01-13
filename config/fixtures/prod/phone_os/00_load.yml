@@ -1,0 +1,7 @@
+App\Domain\Model\PhoneOs:
+    phone_os.ios:
+        __construct: ["iOs", "iOs"]
+    phone_os.android:
+        __construct: ["Android", "Android"]
+    phone_os.windows:
+        __construct: ["Windows Phone", "Windows Phone"]
