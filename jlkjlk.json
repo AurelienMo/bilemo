@@ -1,37 +1,24 @@
 {
-  "type": "array",
-  "items": {
-    "$ref": "#/definitions/PhoneForListOutput"
-  },
-  "definitions": {
-    "PhoneForListOutput": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "required": true
-        },
-        "brand": {
-          "$ref": "#/definitions/BrandOutput",
-          "required": true
-        },
-        "name": {
-          "type": "string",
-          "required": true
-        }
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": "true"
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/OptionOutput"
       }
     },
-    "BrandOutput": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "required": true
-        },
-        "name": {
-          "type": "string",
-          "required": true
-        }
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/LinkOutput"
       }
     }
   }

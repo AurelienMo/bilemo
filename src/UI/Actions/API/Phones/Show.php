@@ -13,7 +13,11 @@ declare(strict_types=1);
 
 namespace App\UI\Actions\API\Phones;
 
+use App\Application\Exceptions\ValidatorException;
+use App\Application\UseCases\Phones\Detail\DetailPhoneRequestHandler;
+use App\Application\UseCases\Phones\Detail\Loader;
 use App\UI\Actions\API\AbstractApiAction;
+use App\UI\Responders\JsonResponder;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,6 +29,22 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class Show extends AbstractApiAction
 {
+    /** @var DetailPhoneRequestHandler */
+    protected $requestHandler;
+
+    /** @var Loader */
+    protected $loader;
+
+    public function __construct(
+        JsonResponder $responder,
+        DetailPhoneRequestHandler $requestHandler,
+        Loader $loader
+    ) {
+        $this->requestHandler = $requestHandler;
+        $this->loader = $loader;
+        parent::__construct($responder);
+    }
+
     /**
      * Display phone detail information
      *
@@ -33,6 +53,9 @@ class Show extends AbstractApiAction
      * @param Request $request
      *
      * @return Response
+     *
+     * @throws ValidatorException
+     * @throws \ReflectionException
      *
      * @SWG\Parameter(
      *     in="path",
@@ -70,6 +93,6 @@ class Show extends AbstractApiAction
         $input = $this->requestHandler->handle($request);
         $output = $this->loader->load($input);
 
-        return $this->sendResponse(null, Response::HTTP_OK, [], true);
+        return $this->sendResponse($output, Response::HTTP_OK, [], true);
     }
 }

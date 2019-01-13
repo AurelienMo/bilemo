@@ -112,10 +112,6 @@ nelmio_api_doc:
             HTTPErrorOutput:
                 type: object
                 properties:
-                    status:
-                        type: integer
-                        required: true
-                        description: Status code error
                     message:
                         type: string
                         required: true

@@ -12,7 +12,7 @@ Feature: I need to be able to access detail phone information
       | username | email               | password | role              |
       | bilemo   | bilemo@yopmail.com  | 12345678 | ROLE_COLLABORATOR |
     And I load prod datas
-    And phone with name "P20 Pro" must return following unique identifier "75232bb8-062d-452f-afb2-49c5bd2c8fd3"
+    And phone with name "P20 Pro" must return following unique identifier "BBBBBBBB-BBBB-BBBB-BBBB-BBBBBBBBBBBB"
 
   Scenario: [Fail] Try to submit request without auth
     When I send a "GET" request to "/api/phones/75232bb8-062d-452f-afb2-49c5bd2c8fd3"
@@ -27,7 +27,7 @@ Feature: I need to be able to access detail phone information
     And the JSON node "message" should be equal to "Ce produit n'existe pas."
 
   Scenario: [Success] Obtain detail phone information with user as role ROLE_CLIENT
-    When After authentication on url "/api/login_check" with method "POST" as user "johndoe" with password "12345678", I send a "GET" request to "/api/phones/75232bb8-062d-452f-afb2-49c5bd2c8fd3" with body:
+    When After authentication on url "/api/login_check" with method "POST" as user "johndoe" with password "12345678", I send a "GET" request to "/api/phones/BBBBBBBB-BBBB-BBBB-BBBB-BBBBBBBBBBBB" with body:
     """
     """
     Then the response status code should be 200
@@ -38,23 +38,31 @@ Feature: I need to be able to access detail phone information
         "properties": {
             "id": {
                 "type": "string",
-                "required": "true"
+                "required": true
             },
             "name": {
                 "type": "string",
-                "required": string
+                "required": true
             },
             "options": {
                 "type": "array",
                 "items": {
                     "$ref": "#/definitions/OptionOutput"
                 }
-            }
+            },
             "links": {
                 "type": "array",
                 "items": {
                     "$ref": "#/definitions/LinkOutput"
                 }
+            }
+        },
+        "definitions": {
+            "OptionOutput": {
+                "type": "object"
+            },
+            "LinkOutput": {
+                "type": "object"
             }
         }
     }

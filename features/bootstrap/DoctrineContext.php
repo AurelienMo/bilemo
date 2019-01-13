@@ -15,6 +15,7 @@ use App\Domain\Model\AbstractModel;
 use App\Domain\Model\Client;
 use App\Domain\Model\Collaborator;
 use App\Domain\Model\Phone;
+use App\Domain\Model\PhoneHasFeature;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -145,6 +146,11 @@ class DoctrineContext implements Context
     public function phoneWithNameMustReturnFollowingUniqueIdentifier($name, $newuuid)
     {
         $phone = $this->getManager()->getRepository(Phone::class)->findOneBy(['name' => $name]);
+        $this->getManager()->getRepository(PhoneHasFeature::class)->replacePhoneUuid($phone->getId()->toString(), $newuuid);
+
+//        foreach ($phoneHasFeature as $phonefeature) {
+//            $this->setUuid($phonefeature, $newuuid);
+//        }
 
         $this->setUuid($phone, $newuuid);
         $this->getManager()->flush();
