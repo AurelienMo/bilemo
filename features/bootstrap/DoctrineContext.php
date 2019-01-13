@@ -11,8 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+use App\Domain\Model\AbstractModel;
 use App\Domain\Model\Client;
 use App\Domain\Model\Collaborator;
+use App\Domain\Model\Phone;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -137,6 +139,16 @@ class DoctrineContext implements Context
         $this->getManager()->flush();
     }
 
+    /**
+     * @Given phone with name :name must return following unique identifier :newuuid
+     */
+    public function phoneWithNameMustReturnFollowingUniqueIdentifier($name, $newuuid)
+    {
+        $phone = $this->getManager()->getRepository(Phone::class)->findOneBy(['name' => $name]);
+
+        $this->setUuid($phone, $newuuid);
+        $this->getManager()->flush();
+    }
 
     /**
      * @return PasswordEncoderInterface
@@ -144,5 +156,13 @@ class DoctrineContext implements Context
     private function getEncoder()
     {
         return $this->encoderFactory->getEncoder(Client::class);
+    }
+
+    private function setUuid(AbstractModel $entity, string $uuid)
+    {
+        $reflection = new \ReflectionClass($entity);
+        $property = $reflection->getProperty('id');
+        $property->setAccessible(true);
+        $property->setValue($entity, $uuid);
     }
 }

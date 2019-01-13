@@ -13,22 +13,30 @@ declare(strict_types=1);
 
 namespace App\UI\Actions\API\Phones;
 
-use Behat\Behat\Tester\Exception\PendingException;
+use App\UI\Actions\API\AbstractApiAction;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class Show
  */
-class Show
+class Show extends AbstractApiAction
 {
     /**
+     * Display phone detail information
+     *
      * @Route("/phones/{id}", name="show_detail_phone", methods={"GET"})
      *
      * @param Request $request
+     *
+     * @return Response
      */
     public function show(Request $request)
     {
-        throw new PendingException('Waiting implement');
+        $input = $this->requestHandler->handle($request);
+        $output = $this->loader->load($input);
+
+        return $this->sendResponse(null, Response::HTTP_OK, [], true);
     }
 }
