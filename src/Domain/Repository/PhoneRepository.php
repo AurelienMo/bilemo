@@ -60,4 +60,20 @@ class PhoneRepository extends EntityRepository
                     ->getQuery()
                     ->getResult();
     }
+
+    /**
+     * @param string $identifier
+     *
+     * @return mixed
+     *
+     * @throws NonUniqueResultException
+     */
+    public function phoneExist(string $identifier)
+    {
+        return $this->createQueryBuilder('p')
+                    ->where('p.id = :identifier')
+                    ->setParameter('identifier', $identifier)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+    }
 }

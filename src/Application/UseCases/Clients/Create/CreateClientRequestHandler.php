@@ -13,11 +13,10 @@ declare(strict_types=1);
 
 namespace App\Application\UseCases\Clients\Create;
 
+use App\Application\Helpers\Core\ProcessorErrorsHttp;
 use App\Application\UseCases\AbstractRequestHandler;
 use App\Application\UseCases\InputInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Class CreateClientRequestHandler
@@ -26,12 +25,7 @@ class CreateClientRequestHandler extends AbstractRequestHandler
 {
     public function handle(Request $request): InputInterface
     {
-        if (!$this->authorizationChecker->isGranted('ROLE_COLLABORATOR')) {
-            throw new HttpException(
-                Response::HTTP_FORBIDDEN,
-                'Vous devez faire partis de la société Bilemo pour créer des comptes clients.'
-            );
-        }
+        $this->checkAuthorization('ROLE_COLLABORATOR', ProcessorErrorsHttp::CREATE_CLIENT_ACCESS);
 
         $input = $this->hydrateInputWithPayload($request);
         $this->validate($input);

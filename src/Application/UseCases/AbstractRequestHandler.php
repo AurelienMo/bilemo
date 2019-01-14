@@ -15,6 +15,7 @@ namespace App\Application\UseCases;
 
 use App\Application\Exceptions\ValidatorException;
 use App\Application\Helpers\Core\ErrorsBuilder;
+use App\Application\Helpers\Core\ProcessorErrorsHttp;
 use App\Domain\Model\AbstractModel;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -129,13 +130,10 @@ abstract class AbstractRequestHandler
      * @param AbstractModel $model
      * @param string        $errorMessage
      */
-    protected function checkAuthorization(string $attribute, AbstractModel $model, string $errorMessage)
+    protected function checkAuthorization(string $attribute, string $errorMessage, AbstractModel $model = null)
     {
         if (!$this->authorizationChecker->isGranted($attribute, $model)) {
-            throw new HttpException(
-                Response::HTTP_FORBIDDEN,
-                $errorMessage
-            );
+            ProcessorErrorsHttp::throwAccessDenied($errorMessage);
         }
     }
 

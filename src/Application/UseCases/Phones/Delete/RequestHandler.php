@@ -11,40 +11,50 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Application\UseCases\Phones\Detail;
+namespace App\Application\UseCases\Phones\Delete;
 
 use App\Application\Helpers\Core\ProcessorErrorsHttp;
 use App\Application\UseCases\AbstractRequestHandler;
 use App\Application\UseCases\InputInterface;
 use App\Domain\Model\Phone;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
- * Class DetailPhoneRequestHandler
+ * Class RequestHandler
  */
-class DetailPhoneRequestHandler extends AbstractRequestHandler
+class RequestHandler extends AbstractRequestHandler
 {
+    /**
+     * @param Request $request
+     *
+     * @return InputInterface
+     *
+     * @throws NonUniqueResultException
+     * @throws \ReflectionException
+     */
     public function handle(Request $request): InputInterface
     {
-        $phoneDetail = $this->entityManager->getRepository(Phone::class)
-                                     ->loadById((string) $request->attributes->get('id'));
+        $this->checkAuthorization(
+            'ROLE_COLLABORATOR',
+            ProcessorErrorsHttp::FORBIDDEN_REMOVE_PHONE
+        );
 
-        if (empty($phoneDetail)) {
+        $phone = $this->entityManager->getRepository(Phone::class)
+                                     ->phoneExist((string) $request->attributes->get('id'));
+
+        if (is_null($phone)) {
             ProcessorErrorsHttp::throwNotFound(ProcessorErrorsHttp::PRODUCT_NOT_FOUND);
         }
 
         $input = $this->instanciateInputClass();
-        $input->setPhone($phoneDetail[0]);
-        unset($phoneDetail[0]);
-        $input->setOptions(array_values($phoneDetail));
+        $input->setPhone($phone);
 
         return $input;
     }
 
     protected function getClassInput(): string
     {
-        return DetailPhoneInput::class;
+        return DeletePhoneInput::class;
     }
 }

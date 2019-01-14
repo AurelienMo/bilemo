@@ -42,7 +42,7 @@ class JsonResponder
         bool $cacheable = false
     ) {
         $response = new Response(
-            $output ? $this->serializer->serialize($output, 'json') : null,
+            !is_null($output) ? $this->serializer->serialize($output, 'json') : null,
             $statusCode,
             array_merge(
                 [
