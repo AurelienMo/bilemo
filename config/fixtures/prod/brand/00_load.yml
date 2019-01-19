@@ -1,4 +1,4 @@
-App\Domain\Model\Brand:
+App\Entity\Brand:
     brand.apple:
         __construct: ["Apple"]
     brand.samsung:

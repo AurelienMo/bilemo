@@ -1,4 +1,4 @@
-App\Domain\Model\TypeConnector:
+App\Entity\TypeConnector:
     type_connector.micro_usb:
         __construct: ["Micro USB"]
     type_connector.usb_c:

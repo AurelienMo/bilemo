@@ -1,4 +1,4 @@
-App\Domain\Model\Phone:
+App\Entity\Phone:
     iphone_x_64:
         __construct: ["Iphone X", "Nous avons toujours rêvé de créer un iPhone qui ne soit qu’écran. Un iPhone si immersif qu’il s’efface au profit de la seule expérience. Un iPhone si intelligent qu’il réponde à un geste, à la voix… et même à un regard. C’est chose faite aujourd’hui. Dites bonjour au futur.", '@brand.apple', '@phone_memory.64', '@phone_os.ios', '@type_connector.lightning']
     iphone_x_256:
@@ -16,7 +16,7 @@ App\Domain\Model\Phone:
     huawei_mate_20_128:
         __construct: ["MATE 20", "Avec le HUAWEI Mate20, entrez dans un nouveau monde d’intelligence. Son processeur Kirin 980, doté d’Intelligence Artificielle, améliore drastiquement les performances et la rapidité d’exécution des tâches demandées. Pour une expérience mobile toujours plus fluide. Sa triple caméra conçue avec Leica de 12MP + 16MP + 8MP vous fera entrevoir de nouveaux horizons. Son téléobjectif de 8MP permettra un zoom hybride x5, alors que la nouvelle lentille ultra grand angle de 16MP capturera des images macro ou grand angle. Il embarque une batterie de 4000mAh, dotée de charge rapide permettant de charger la batterie à hauteur de 58% en seulement 30 minutes. Il dispose également d’un écran HUAWEI FullView de 6.53 pouces au format 18.7:9 . pour une immersion totale dans vos jeux et films.", '@brand.huawei', '@phone_memory.128', '@phone_os.android', '@type_connector.usb_c']
 
-App\Domain\Model\PhoneHasFeature:
+App\Entity\PhoneHasFeature:
     iphone_x_64.width:
         __construct: ["@iphone_x_64", "@feature_phone.width", "70,9"]
     iphone_x_64.height:

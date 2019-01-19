@@ -1,4 +1,4 @@
 api:
-    resource: ../../src/UI/Actions/API/
+    resource: ../../src/Actions/API/
     type: annotation
     prefix: api

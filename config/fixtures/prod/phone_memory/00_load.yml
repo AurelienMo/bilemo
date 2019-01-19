@@ -1,4 +1,4 @@
-App\Domain\Model\PhoneMemory:
+App\Entity\PhoneMemory:
     phone_memory.8:
         __construct: ["8"]
     phone_memory.16:

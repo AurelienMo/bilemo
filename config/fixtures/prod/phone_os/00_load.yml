@@ -1,4 +1,4 @@
-App\Domain\Model\PhoneOs:
+App\Entity\PhoneOs:
     phone_os.ios:
         __construct: ["iOs", "iOs"]
     phone_os.android:

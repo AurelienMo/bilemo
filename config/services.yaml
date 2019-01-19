@@ -12,20 +12,20 @@ services:
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Domain/Model,Domain/DoctrineMigrations,Tests,Kernel.php,CacheKernel.php}'
+        exclude: '../src/{DependencyInjection,Entity,Domain/DoctrineMigrations,Tests,Kernel.php,CacheKernel.php}'
 
-    App\UI\Actions\:
-        resource: '../src/UI/Actions'
+    App\Actions\:
+        resource: '../src/Actions'
         tags: ['controller.service_arguments']
 
-    App\Application\Subscribers\Core\TimestampableSubscriber:
+    App\Domain\Common\Subscribers\TimestampableSubscriber:
         tags:
             - { name: doctrine.event_subscriber, connection: default }
 
-    App\Application\Listeners\JWT\JWTAuthFailure:
+    App\Domain\Authentication\Listeners\JWTAuthFailure:
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure, method: onAuthenticationFailureResponse }
 
-    App\Application\Listeners\JWT\JWTNotFound:
+    App\Domain\Authentication\Listeners\JWTNotFound:
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_not_found, method: onJWTNotFound }

@@ -1,9 +1,9 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
-        App\Domain\Model\Client:
+        App\Entity\Client:
             algorithm: bcrypt
-        App\Domain\Model\Collaborator:
+        App\Entity\Collaborator:
             algorithm: bcrypt
     providers:
         chain_provider:
@@ -11,10 +11,10 @@ security:
                 providers: [client_provider, collaborator_provider]
         client_provider:
             entity:
-                class: App\Domain\Model\Client
+                class: App\Entity\Client
         collaborator_provider:
             entity:
-                class: App\Domain\Model\Collaborator
+                class: App\Entity\Collaborator
 
     firewalls:
         dev:

@@ -1,4 +1,4 @@
-App\Domain\Model\FeaturePhone:
+App\Entity\FeaturePhone:
     feature_phone.width:
         __construct: ["Largeur", "mm"]
     feature_phone.height:
