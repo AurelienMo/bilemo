@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Domain\CreateAccountFromCommand;
 
+use App\Domain\Common\Builders\ClientBuilder;
 use App\Domain\Common\Builders\CollaboratorBuilder;
 use App\Entity\Client;
 use App\Entity\Collaborator;
@@ -94,7 +95,7 @@ class CreateAccountCommand extends Command
     /**
      * @param array $listFields
      *
-     * @return Collaborator
+     * @return Collaborator|Client
      *
      * @throws \Exception
      */
@@ -110,7 +111,7 @@ class CreateAccountCommand extends Command
                 $listFields['email'],
                 $listFields['role']
             ) :
-            Client::create(
+            ClientBuilder::create(
                 $listFields['username'],
                 $passwordEncoded,
                 $listFields['email'],

@@ -21,28 +21,14 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class JsonResponder
 {
-    /** @var SerializerInterface */
-    protected $serializer;
-
-    /**
-     * JsonResponder constructor.
-     *
-     * @param SerializerInterface $serializer
-     */
-    public function __construct(
-        SerializerInterface $serializer
-    ) {
-        $this->serializer = $serializer;
-    }
-
-    public function response(
-        $output = null,
+    public static function response(
+        $datas = null,
         int $statusCode = Response::HTTP_OK,
         array $headers = [],
         bool $cacheable = false
     ) {
         $response = new Response(
-            !is_null($output) ? $this->serializer->serialize($output, 'json') : null,
+            !is_null($datas) ? $datas : null,
             $statusCode,
             array_merge(
                 [

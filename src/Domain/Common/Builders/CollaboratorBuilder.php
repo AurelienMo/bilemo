@@ -38,8 +38,8 @@ class CollaboratorBuilder
     ) {
         return new Collaborator(
             $username,
-            $password,
             $email,
+            $password,
             $role
         );
     }

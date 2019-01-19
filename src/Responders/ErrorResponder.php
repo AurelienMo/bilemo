@@ -21,30 +21,16 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class ErrorResponder
 {
-    /** @var SerializerInterface */
-    private $serializer;
-
-    /**
-     * ErrorResponder constructor.
-     *
-     * @param SerializerInterface $serializer
-     */
-    public function __construct(
-        SerializerInterface $serializer
-    ) {
-        $this->serializer = $serializer;
-    }
-
     /**
      * @param array $datas
      * @param int   $statusCode
      *
      * @return Response
      */
-    public function response(array $datas, int $statusCode = Response::HTTP_BAD_REQUEST)
+    public static function response($datas, int $statusCode = Response::HTTP_BAD_REQUEST)
     {
         return new Response(
-            $this->serializer->serialize($datas, 'json'),
+            $datas,
             $statusCode,
             [
                 'Content-Type' => 'application/json',

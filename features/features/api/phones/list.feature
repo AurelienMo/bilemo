@@ -55,7 +55,7 @@ Feature: As an auth user, I need to be able to get list phones
         }
     }
     """
-    And the JSON node "root[0].links" should have 1 element
+    And the JSON node "root[0]._links" should have 1 element
 
   Scenario: [Success] Get list phones with auth as ROLE_COLLABORATOR
     When After authentication on url "/api/login_check" with method "POST" as user "bilemo" with password "12345678", I send a "GET" request to "/api/phones" with body:
@@ -94,4 +94,4 @@ Feature: As an auth user, I need to be able to get list phones
         }
     }
     """
-    And the JSON node "root[0].links" should have 2 elements
+    And the JSON node "root[0]._links" should have 2 elements

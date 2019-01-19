@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use App\Domain\Model\AbstractModel;
-use App\Domain\Model\Client;
-use App\Domain\Model\Collaborator;
-use App\Domain\Model\Phone;
-use App\Domain\Model\PhoneHasFeature;
+use App\Entity\AbstractModel;
+use App\Entity\Client;
+use App\Entity\Collaborator;
+use App\Entity\Phone;
+use App\Entity\PhoneHasFeature;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\Common\Persistence\ObjectManager;

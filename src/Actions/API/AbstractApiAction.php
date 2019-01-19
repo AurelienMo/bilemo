@@ -50,7 +50,7 @@ abstract class AbstractApiAction
         array $headers = [],
         bool $cacheable = false
     ) {
-        return $this->responder->response($datas, $statusCode, $headers, $cacheable);
+        return JsonResponder::response($datas, $statusCode, $headers, $cacheable);
     }
 
     protected function getCache()
