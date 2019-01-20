@@ -45,6 +45,12 @@ nelmio_api_doc:
                     message:
                         type: string
                         required: true
+            HttpErrorOutput:
+                type: object
+                properties:
+                    message:
+                        type: string
+                        required: true
             ListPhoneOutput:
                 type: array
                 items:
@@ -71,6 +77,50 @@ nelmio_api_doc:
                         type: array
                         items:
                             $ref: "#/definitions/LinkItemOutput"
+            PhoneDetailOutput:
+                type: object
+                properties:
+                    id:
+                        type: string
+                        required: true
+                    name:
+                        type: string
+                        required: true
+                    description:
+                        type: string
+                        required: true
+                    brand:
+                        type: string
+                        required: true
+                    os:
+                        type: string
+                        required: true
+                    memory:
+                        type: string
+                        required: true
+                    typeConnector:
+                        type: string
+                        required: true
+                    features:
+                        type: array
+                        items:
+                            $ref: "#/definitions/FeatureOutput"
+                    _links:
+                        type: array
+                        items:
+                            $ref: "#/definitions/LinkItemOutput"
+            FeatureOutput:
+                type: object
+                properties:
+                    id:
+                        type: string
+                        required: true
+                    name:
+                        type: string
+                        required: true
+                    value:
+                        type: string
+                        required: true
             LinkItemOutput:
                 type: object
                 properties:
