@@ -25,6 +25,5 @@ class DeletePhone
      */
     public function delete()
     {
-
     }
 }

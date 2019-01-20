@@ -60,7 +60,9 @@ abstract class AbstractSerializerNormalizer
             );
             $links[$type]['method'] = $linkObject->getMethod();
             $links[$type]['url'] = $linkObject->getUrl();
-            if (array_key_exists('secure', $config[$type]) && !$this->authorizationChecker->isGranted($values['secure'])) {
+            if (array_key_exists('secure', $config[$type]) &&
+                !$this->authorizationChecker->isGranted($values['secure'])
+            ) {
                 unset($links[$type]);
             }
         }

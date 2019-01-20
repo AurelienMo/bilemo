@@ -13,10 +13,11 @@ declare(strict_types=1);
 
 namespace App\Domain;
 
-use App\Application\Helpers\Core\ErrorsBuilder;
-use App\Common\Helpers\ProcessorErrorsHttp;
+use App\Domain\Common\Builders\ErrorsBuilder;
 use App\Domain\Common\Exceptions\ValidatorException;
+use App\Domain\Common\Helpers\ProcessorErrorsHttp;
 use App\Entity\AbstractModel;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -25,9 +26,9 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * Class AbstractRequestHandler
+ * Class AbstractRequestResolver
  */
-abstract class AbstractRequestHandler
+abstract class AbstractRequestResolver
 {
     /** @var SerializerInterface */
     protected $serializer;
@@ -45,7 +46,7 @@ abstract class AbstractRequestHandler
     protected $entityManager;
 
     /**
-     * AbstractRequestHandler constructor.
+     * AbstractRequestResolver constructor.
      *
      * @param SerializerInterface           $serializer
      * @param ValidatorInterface            $validator
@@ -75,21 +76,7 @@ abstract class AbstractRequestHandler
      * @throws \ReflectionException
      * @throws ValidatorException
      */
-    public function handle(Request $request): InputInterface
-    {
-        $input = null;
-        if ($this->havePayload()) {
-            $input = $this->hydrateInputWithPayload($request);
-        }
-
-        if (\is_null($input)) {
-            $input = $this->instanciateInputClass();
-        }
-
-        $this->validate($input);
-
-        return $input;
-    }
+    abstract public function resolve(Request $request): InputInterface;
 
     /**
      * Validate input according different constraints
@@ -136,11 +123,13 @@ abstract class AbstractRequestHandler
     }
 
     /**
-     * @return bool
+     * @param string $className
+     *
+     * @return ObjectRepository
      */
-    protected function havePayload(): bool
+    protected function getRepository(string $className)
     {
-        return false;
+        return $this->entityManager->getRepository($className);
     }
 
     /**

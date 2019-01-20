@@ -18,6 +18,8 @@ use App\Entity\Phone;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use App\Domain\Phones\ListPhones\Loader as LoaderListPhones;
 use App\Domain\Phones\ListPhones\NormalizerDatas as NormalizerListPhones;
+use App\Domain\Phones\ShowPhone\Loader as LoaderShowPhone;
+use App\Domain\Phones\ShowPhone\NormalizerDatas as NormalizerShowPhone;
 
 /**
  * Class PhoneNormalizer
@@ -36,9 +38,18 @@ class PhoneNormalizer extends AbstractSerializerNormalizer implements Normalizer
         $datas = null;
         switch ($context['groups']) {
             case LoaderListPhones::SERIALIZATION_CONTEXT:
-                $links = $this->buildLinks(LoaderListPhones::HATEOAS_BUILDER_CONFIGURATION, $object->getId()->toString());
+                $links = $this->buildLinks(
+                    LoaderListPhones::HATEOAS_BUILDER_CONFIGURATION,
+                    $object->getId()->toString()
+                );
                 $datas = NormalizerListPhones::normalizeDatas($object, $links);
                 break;
+            case LoaderShowPhone::SERIALIZATION_CONTEXT:
+                $links = $this->buildLinks(
+                    LoaderShowPhone::HATEOAS_BUILDER_CONFIGURATION,
+                    $object->getId()->toString()
+                );
+                $datas = NormalizerShowPhone::normalize($object, $context['features'], $links);
         }
 
         return $datas;
