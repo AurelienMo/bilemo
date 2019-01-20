@@ -26,5 +26,60 @@ nelmio_api_doc:
                       required: true
                       schema:
                           $ref: "#/definitions/AuthenticationContent"
-
-
+        definitions:
+            AuthenticationContent:
+                type: object
+                properties:
+                    username:
+                        type: string
+                        required: true
+                    password:
+                        type: string
+                        required: true
+            JwtErrorOutput:
+                type: object
+                properties:
+                    status:
+                        type: integer
+                        required: true
+                    message:
+                        type: string
+                        required: true
+            ListPhoneOutput:
+                type: array
+                items:
+                    $ref: "#/definitions/PhoneItemListOutput"
+            PhoneItemListOutput:
+                type: object
+                properties:
+                    id:
+                        type: string
+                        required: true
+                    name:
+                        type: string
+                        required: true
+                    os:
+                        type: string
+                        required: true
+                    brand:
+                        type: string
+                        required: true
+                    memory:
+                        type: string
+                        required: true
+                    _links:
+                        type: array
+                        items:
+                            $ref: "#/definitions/LinkItemOutput"
+            LinkItemOutput:
+                type: object
+                properties:
+                    type:
+                        type: string
+                        required: true
+                    method:
+                        type: string
+                        required: true
+                    url:
+                        type: string
+                        required: true

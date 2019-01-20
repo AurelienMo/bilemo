@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Domain;
 
 use App\Domain\Common\Helpers\Hateoas\HateoasBuilder;
+use App\Domain\Common\Helpers\Hateoas\Links\AbstractLink;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
@@ -52,21 +53,29 @@ abstract class AbstractSerializerNormalizer
         $links = [];
 
         foreach ($config as $type => $values) {
+            if (array_key_exists('secure', $config[$type]) &&
+                !$this->authorizationChecker->isGranted($values['secure'])
+            ) {
+                continue;
+            }
             $linkObject = $this->hateoasBuilder->build(
                 $type,
                 $values['route'],
                 array_key_exists('params', $config[$type]) ?
                     [$values['params'] => $identifier] : []
             );
-            $links[$type]['method'] = $linkObject->getMethod();
-            $links[$type]['url'] = $linkObject->getUrl();
-            if (array_key_exists('secure', $config[$type]) &&
-                !$this->authorizationChecker->isGranted($values['secure'])
-            ) {
-                unset($links[$type]);
-            }
+            $links[] = $this->linkObjectToArray($linkObject);
         }
 
         return $links;
+    }
+
+    private function linkObjectToArray(AbstractLink $linkObject)
+    {
+        return [
+            'type' => $linkObject->getType(),
+            'method' => $linkObject->getMethod(),
+            'url' => $linkObject->getUrl(),
+        ];
     }
 }

@@ -16,6 +16,8 @@ namespace App\Actions\API\Phones;
 use App\Actions\API\AbstractApiAction;
 use App\Domain\Phones\ListPhones\Loader;
 use App\Responders\JsonResponder;
+use Nelmio\ApiDocBundle\Annotation\Security;
+use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -47,6 +49,21 @@ class ListPhone extends AbstractApiAction
      * @Route("/phones", name="list_phones", methods={"GET"})
      *
      * @return Response
+     *
+     * @SWG\Response(
+     *     response="200",
+     *     description="Successful list phones",
+     *     ref="#/definitions/ListPhoneOutput"
+     * )
+     * @SWG\Response(
+     *     response="401",
+     *     description="Unauthorized. Please login",
+     *     @SWG\Schema(
+     *        ref="#/definitions/JwtErrorOutput"
+     * )
+     * )
+     * @SWG\Tag(name="Phone")
+     * @Security(name="Bearer")
      */
     public function listPhones()
     {
