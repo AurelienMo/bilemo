@@ -28,4 +28,17 @@ SQL;
         $stmt = $this->_em->getConnection()->prepare($sql);
         $stmt->execute();
     }
+
+    /**
+     * @param string $phoneId
+     *
+     * @return mixed
+     */
+    public function listByPhoneId(string $phoneId)
+    {
+        return $this->createQueryBuilder('phf')
+                   ->where('phf.phone = :phoneId')
+                   ->setParameter('phoneId', $phoneId)
+                   ->getQuery()->getResult();
+    }
 }

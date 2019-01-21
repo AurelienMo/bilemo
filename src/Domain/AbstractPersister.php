@@ -16,6 +16,7 @@ namespace App\Domain;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Class AbstractPersister
@@ -28,6 +29,9 @@ abstract class AbstractPersister
     /** @var UrlGeneratorInterface */
     protected $urlGenerator;
 
+    /** @var SerializerInterface */
+    protected $serializer;
+
     /**
      * AbstractPersister constructor.
      *
@@ -36,18 +40,20 @@ abstract class AbstractPersister
      */
     public function __construct(
         EntityManagerInterface $entityManager,
-        UrlGeneratorInterface $urlGenerator
+        UrlGeneratorInterface $urlGenerator,
+        SerializerInterface $serializer
     ) {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
+        $this->serializer = $serializer;
     }
 
     /**
      * @param InputInterface $input
      *
-     * @return OutputInterface|null
+     * @return string|null
      */
-    abstract public function save(InputInterface $input): ?OutputInterface;
+    abstract public function save(InputInterface $input): ?string;
 
     /**
      * @return string
